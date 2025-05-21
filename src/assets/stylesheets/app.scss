@@ -1,0 +1,456 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@mixin isphone() {
+    @media only screen and (max-width: 479px) {
+        @content;
+    }
+}
+
+@mixin istablet() {
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+        @content;
+    }
+}
+
+:root {
+    --color-white: #fff;
+}
+
+html,
+body {
+    font-family: "PT Sans", sans-serif;
+    background-color: #f4f5f9;
+
+    margin: 0;
+}
+
+#root {
+    position: absolute;
+    width: 1440px;
+    height: 1080px;
+    margin: auto;
+    top: 0;
+    left: calc(50% - 1440px / 2);
+
+    @include isphone() {
+        width: unset;
+        height: unset;
+        position: unset;
+    }
+}
+
+button {
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.1);
+    border: none;
+    border-radius: 50%;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+.bg-container {
+    position: absolute;
+    width: 1440px;
+    height: 1080px;
+    top: 0;
+    left: calc(50% - 1440px / 2);
+
+    @include isphone() {
+        display: none;
+    }
+}
+
+.bg-line {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border: 1px solid #42567a20;
+
+    @include isphone() {
+        display: none;
+    }
+}
+
+.bg-line-vert-1 {
+    @extend .bg-line;
+    left: 0;
+    top: 0;
+}
+
+.bg-line-vert-2 {
+    @extend .bg-line;
+    left: 50%;
+    top: 0px;
+}
+
+.bg-line-vert-3 {
+    @extend .bg-line;
+    right: 0;
+    top: 0px;
+}
+
+.bg-line-hor {
+    @extend .bg-line;
+    width: 100%;
+    height: 0px;
+    left: 0;
+    top: 50%;
+}
+
+.bg-circle {
+    @extend .bg-line;
+    @extend .noselect;
+    width: 530px;
+    height: 530px;
+    left: calc(50% - 530px / 2);
+    top: calc(50% - 530px / 2);
+    border-radius: 50%;
+}
+
+.bg-circle-dot {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bg-circle-dot::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #42567a;
+    border: 1px solid #42567a;
+    transition: all 1s ease;
+    transform: translate(24px, 24px);
+}
+
+.bg-circle-dot-active::after {
+    width: 56px;
+    height: 56px;
+    transform: translate(0, 0);
+    background-color: #f4f5f9;
+    border: 1px solid rgba(48, 62, 88, 0.5);
+}
+
+.bg-circle-text {
+    position: absolute;
+    left: 130%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #42567a00;
+    transition: color 0.5s;
+
+    @include isphone() {
+        position: unset;
+        color: #42567a;
+        margin-left: 20px;
+    }
+}
+
+.bg-circle-dot-active > .bg-circle-text,
+.bg-circle-dot-active > .bg-circle-number {
+    color: #42567aff;
+}
+
+.bg-circle-number {
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #42567a00;
+    transition: color 0.5s;
+    z-index: 1;
+}
+
+.title {
+    @extend .noselect;
+    position: absolute;
+    width: 431px;
+    height: 134px;
+    left: 0;
+    top: 170px;
+    color: #42567a;
+
+    @include isphone() {
+        position: unset;
+        width: unset;
+        margin: 58px 0 0 20px;
+        height: fit-content;
+    }
+}
+
+.title > p {
+    position: absolute;
+    width: 353px;
+    height: 134px;
+    right: 0px;
+    top: 0;
+    margin: 0;
+
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 120%;
+
+    @include isphone() {
+        position: unset;
+        width: 128px;
+        font-size: 20px;
+        height: unset;
+    }
+}
+
+.title::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-image: linear-gradient(#3877ee, #ef5da8) 1;
+    border-width: 5px;
+    border-style: solid;
+
+    @include isphone() {
+        display: none;
+    }
+}
+
+.dates {
+    @extend .noselect;
+    font-size: 200px;
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 400px;
+
+    .dates__from {
+        color: #5d5fef;
+    }
+
+    .dates__to {
+        color: #ef5da8;
+    }
+
+    @include isphone() {
+        position: unset;
+        font-size: 56px;
+        margin: 54px 0;
+    }
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    @include isphone() {
+        position: unset;
+    }
+}
+
+.bottom::before {
+    content: "";
+    @include isphone() {
+        position: absolute;
+        margin: 6px 16px;
+        left: 6px;
+        right: 6px;
+        height: 0;
+        border-image: #c7cdd9 1;
+        opacity: 0.2;
+        border-width: 1px;
+        border-style: solid;
+    }
+}
+
+.card {
+    @extend .noselect;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    height: 135px;
+    gap: 15px;
+
+    @include isphone() {
+        width: fit-content;
+        margin-top: 25px;
+    }
+}
+
+.card__year {
+    width: 41px;
+    height: 30px;
+
+    font-family: "Bebas Neue";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #3877ee;
+
+    @include isphone() {
+        margin: 6px 0 0 0;
+        font-size: 16px;
+        height: fit-content;
+    }
+}
+
+.card__text {
+    width: 320px;
+
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #42567a;
+
+    @include isphone() {
+        width: 166px;
+        margin: 0px 0;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.slider {
+    display: flex;
+    // gap: 80px;
+    margin: 0 40px;
+    position: relative;
+    bottom: 104px;
+    cursor: grab;
+
+    @include isphone() {
+        position: unset;
+        margin: 0;
+        padding: 0 20px;
+        bottom: unset;
+    }
+}
+
+.slider-button {
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+    height: 40px;
+    margin: auto 12px;
+    opacity: 1;
+    transition: opacity 0.2s;
+
+    svg {
+        display: block;
+        margin: auto;
+    }
+
+    @include isphone() {
+        display: none;
+    }
+}
+
+.swiper-slide {
+    width: fit-content;
+    padding-right: 80px;
+}
+
+.swiper-slide-active {
+    @include isphone() {
+        opacity: 1;
+        transition: opacity 0.5s;
+    }
+}
+
+.swiper-slide-next {
+    @include isphone() {
+        opacity: 0.5;
+        transition: opacity 1s;
+    }
+}
+
+.swiper-button-disabled {
+    opacity: 0;
+    cursor: default;
+}
+
+.minislider {
+    @extend .noselect;
+    position: absolute;
+    bottom: 295px;
+    left: 80px;
+    width: 120px;
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    span {
+        font-size: 14px;
+        width: 36px;
+        height: 18px;
+        left: 400px;
+        top: 697px;
+
+        font-family: "PT Sans";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+
+        color: #42567a;
+    }
+
+    @include isphone() {
+        bottom: 13px;
+        left: 20px;
+        width: 58px;
+        height: 50px;
+    }
+}
+
+.minislider-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.minislider-button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(66, 86, 122, 0.5);
+
+    svg {
+        display: block;
+        margin: auto;
+    }
+
+    @include isphone() {
+        width: 25px;
+        height: 25px;
+    }
+}
